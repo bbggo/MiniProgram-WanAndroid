@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/system/system",
-    "pages/wechat/wechat"
+    "pages/wechat/wechat",
+    "pages/wechat/chapterdetail/chapterdetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,6 +29,12 @@
         "text": "首页",
         "iconPath": "images/img_index.png",
         "selectedIconPath": "images/img_index_click.png"
+      },
+      {
+        "pagePath": "pages/wechat/wechat",
+        "text": "公众号",
+        "iconPath": "images/img_wxarticle.png",
+        "selectedIconPath": "images/img_wxarticle_click.png"
       },
       {
         "pagePath": "pages/system/system",

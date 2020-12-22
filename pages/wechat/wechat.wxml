@@ -1,2 +1,13 @@
 <!--pages/wechat/wechat.wxml-->
-<text>pages/wechat/wechat.wxml</text>
+<cu-custom bgColor="bg-gradual-blue">
+<view slot="content">公众号</view>
+</cu-custom>
+<scroll-view >
+  <view class='cu-tabbar-height'></view>
+  <view class='nav-list'>
+    <view class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key>
+      <view class="nav-name" id='{{item.id}}' data-index='{{item.id}}' bindtap="itemClick" data-name='{{item.name}}'>{{item.name}}</view>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
+</scroll-view>
