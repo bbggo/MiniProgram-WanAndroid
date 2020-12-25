@@ -1,0 +1,23 @@
+/* pages/hot/hot.wxss */
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  background-color: #F5F5F5;
+}
+
+.item {
+  text-align: center;
+  background-color: #fff;
+  font-size: 16px;
+  min-width: 50px;
+  padding: 8px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}

@@ -75,7 +75,7 @@ Page({
     console.log('index=', index);
     console.log('name=', name);
     wx.navigateTo({
-      url: './chapterdetail/chapterdetail?id=' + id + '&name=' + name,
+      url: './wxarticlelist/wxarticlelist?id=' + id + '&name=' + name,
     })
   },
 

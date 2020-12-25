@@ -1,18 +1,40 @@
 // pages/system/system.js
+
+var that = this;
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    dataList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getTree();
+  },
 
+  getTree: function() {
+    that = this;
+    wx.request({
+      url: app.globalData.baseUrl + '/tree/json',
+      method: 'GET',
+      success(res) {
+        console.log('request getTree success = ', res.data.data);
+        that.setData({
+          isLoad: false,
+          dataList: res.data.data
+        })
+      },
+      fail(res) {
+        console.log('request getTree fail = ', res);
+      }
+    })
   },
 
   /**

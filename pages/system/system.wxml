@@ -1,2 +1,10 @@
 <!--pages/system/system.wxml-->
-<text>pages/system/system.wxml</text>
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">知识体系</view>
+</cu-custom>
+
+<view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{dataList}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      {{item.name}}
+    </view>
+
+

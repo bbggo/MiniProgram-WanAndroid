@@ -4,7 +4,9 @@
     "pages/logs/logs",
     "pages/system/system",
     "pages/wechat/wechat",
-    "pages/wechat/chapterdetail/chapterdetail"
+    "pages/wechat/wxarticlelist/wxarticlelist",
+    "pages/hot/hot",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,6 +43,12 @@
         "text": "知识体系",
         "iconPath": "images/img_tixi.png",
         "selectedIconPath": "images/img_tixi_click.png"
+      },
+      {
+        "pagePath": "pages/hot/hot",
+        "text": "热搜",
+        "iconPath": "images/img_hot.png",
+        "selectedIconPath": "images/img_hot_click.png"
       }
     ]
   },
@@ -50,6 +58,7 @@
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
-    "mp-loading": "weui-miniprogram/loading/loading"
+    "mp-loading": "weui-miniprogram/loading/loading",
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
   }
 }
