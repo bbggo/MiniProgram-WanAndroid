@@ -13,6 +13,7 @@ Page({
     pageNo: 0,
     isLoad: false,
     pageList: [],
+    pageTitleList: [],
   },
 
   /**
@@ -21,13 +22,14 @@ Page({
   onLoad: function (options) {
     that = this;
     that.setData({
-      title: options.name
-    }),
-    that.data.id = options.id
+        title: options.name
+      }),
+      that.data.id = options.id
     this.queryList();
   },
 
-  queryList: function() {
+  queryList: function () {
+    that = this
     wx.request({
       url: app.globalData.baseUrl + '/article/query/' + that.data.pageNo + '/json',
       method: 'POST',
@@ -39,9 +41,30 @@ Page({
       },
       success(res) {
         console.log('request queryList success = ', res);
+        var templist = that.data.pageList
+        var resultlist = templist.concat(res.data.data.datas)
+        that.setData({
+          pageList: resultlist
+        })
+
+        //取出标题中的html标签
+        let titles = []
+        console.log("pageList = ", that.data.pageList)
+        for (var i in that.data.pageList) {
+          var title = that.data.pageList[i].title
+          console.log("title = ", title);
+          //替换掉html标签,全局替换
+          title = title.replace(/<[^>]+>/g, "")
+          //替换汉字符号,全局替换
+          title = title.replace(/&amp;/g, "、")
+          title = title.replace(/&mdash;/g, "-")
+          console.log("title = ", title);
+          //将替换过的标题添加到新数组
+          titles.push(title)
+        }
         that.setData({
           isLoad: false,
-          pageList: that.data.pageList.concat(res.data.data.datas)
+          pageTitleList: that.data.pageTitleList.concat(titles)
         })
       },
       fail(res) {

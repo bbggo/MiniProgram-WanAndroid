@@ -6,7 +6,8 @@
     "pages/wechat/wechat",
     "pages/wechat/wxarticlelist/wxarticlelist",
     "pages/hot/hot",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/systemlist/systemlist"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -52,13 +53,10 @@
       }
     ]
   },
-  "useExtendedLib": {
-    "kbone": true,
-    "weui": true
-  },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom",
     "mp-loading": "weui-miniprogram/loading/loading",
-    "mp-searchbar": "weui-miniprogram/searchbar/searchbar"
+    "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
+    "mp-tabs": "@miniprogram-component-plus/tabs"
   }
 }

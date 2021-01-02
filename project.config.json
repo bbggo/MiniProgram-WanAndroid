@@ -36,7 +36,8 @@
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [
-      "weui-miniprogram"
+      "weui-miniprogram",
+      "@miniprogram-component-plus"
     ],
     "minifyWXSS": true
   },

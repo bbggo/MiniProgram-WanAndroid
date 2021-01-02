@@ -5,13 +5,12 @@
 </cu-custom>
 
 <view wx:for="{{pageList}}">
-
 <view class="card" bindtap='detail' data-index='{{index}}'>
   <view class="portraitTime">
     <image class="portrait" src="../../images/head.jpg"></image>
     <text class="time">{{item.niceDate}}</text>
   </view>
-  <view class='title'>{{item.title}}</view>
+  <view class='title'>{{pageTitleList[index]}}</view>
   <view class='portraitTime'>
     <view class='chapterName' id='{{item.chapterId}}' catchtap='chapter'>{{item.chapterName}}</view>
     <image wx:if="{{item.collect}}" class='collect' src='/images/img_collect_ed.png' id='{{index}}'
