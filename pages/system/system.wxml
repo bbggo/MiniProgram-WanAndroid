@@ -4,14 +4,14 @@
 </cu-custom>
 
 <view class="VerticalBox">
-  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:100vh">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:100vh;">
     <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{dataList}}" wx:key bindtap='tabSelect'
       data-id="{{index}}" data-index="{{index}}">
       {{item.name}}
     </view>
   </scroll-view>
 
-  <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain" style="height:100vh">
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain" style="height:100vh;">
     <view class="padding-top padding-lr" wx:for="{{dataList}}" wx:key id="main-{{index}}">
       <view class='cu-bar solid-bottom bg-white'>
         <view class='action'>

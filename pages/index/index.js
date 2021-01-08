@@ -51,6 +51,9 @@ Page({
 
   getPageList: function () {
     that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.showNavigationBarLoading();
     wx.request({
       url: app.globalData.baseUrl + '/article/list/' + that.data.pageNumber + '/json',
@@ -68,6 +71,11 @@ Page({
           isLoad: false,
           pageList: resultList
         })
+        wx.hideLoading();
+      },
+      fail(res) {
+        console.log('request index page fail', res);
+        wx.hideLoading();
       }
     })
   },

@@ -34,6 +34,9 @@ Page({
    */
   onLoad: function (options) {
     // that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
     this.getWeChatList();
   },
 
@@ -60,9 +63,11 @@ Page({
         that.setData({
           elements: listData
         })
+        wx.hideLoading();
       },
       fail(res) {
         console.log('getWeChatList error', res);
+        wx.hideLoading();
       }
     })
   },

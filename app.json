@@ -7,7 +7,8 @@
     "pages/wechat/wxarticlelist/wxarticlelist",
     "pages/hot/hot",
     "pages/search/search",
-    "pages/systemlist/systemlist"
+    "pages/systemlist/systemlist",
+    "pages/my/my"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -48,6 +49,12 @@
       {
         "pagePath": "pages/hot/hot",
         "text": "热搜",
+        "iconPath": "images/img_hot.png",
+        "selectedIconPath": "images/img_hot_click.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
         "iconPath": "images/img_hot.png",
         "selectedIconPath": "images/img_hot_click.png"
       }

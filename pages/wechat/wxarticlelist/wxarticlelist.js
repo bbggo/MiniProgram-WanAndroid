@@ -33,6 +33,9 @@ Page({
       input: this.input.bind(this),
       clearInput: this.clearInput.bind(this)
     })
+    wx.showLoading({
+      title: '加载中...',
+    })
     that.getWxArticleList();
   },
 
@@ -68,12 +71,14 @@ Page({
           isLoad: false,
           articleList: resultList
         })
+        wx.hideLoading();
       },
       fail(res) {
         that.setData({
           isLoad: false,
         })
         console.log('request getWxArticleList error', res);
+        wx.hideLoading();
       }
     })
   },

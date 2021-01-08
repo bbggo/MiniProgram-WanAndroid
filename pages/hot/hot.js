@@ -18,6 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+    })
     this.getHotList();
     this.getWebList();
   },
@@ -31,9 +34,11 @@ Page({
         that.setData({
           hotList: res.data.data
         })
+        wx.hideLoading()
       },
       fail(res) {
         console.log('request getHotList error', res);
+        wx.hideLoading()
       }
     })
   },
@@ -46,9 +51,11 @@ Page({
         that.setData({
           webList: res.data.data
         })
+        wx.hideLoading()
       },
       fail(res) {
         console.log('request getWebList error', res);
+        wx.hideLoading()
       }
     })
   },

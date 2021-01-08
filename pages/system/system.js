@@ -46,6 +46,9 @@ Page({
 
   getTree: function() {
     that = this;
+    wx.showLoading({
+      title: '加载中...',
+    })
     wx.request({
       url: app.globalData.baseUrl + '/tree/json',
       method: 'GET',
@@ -53,15 +56,20 @@ Page({
         console.log('request getTree success = ', res.data.data);
         const colors = app.globalData.ColorList;
         console.log("colors = ", colors);
+        let list = res.data.data;
+        for(var i = 0; i < list.length; i++){
+          list[i].id = i
+        }
         that.setData({
-          isLoad: false,
-          dataList: res.data.data,
+          dataList: list,
           colorArr: colors,
           colorCount: colors.length
         })
+        wx.hideLoading();
       },
       fail(res) {
         console.log('request getTree fail = ', res);
+        wx.hideLoading();
       }
     })
   },
@@ -86,6 +94,7 @@ Page({
         view.fields({
           size: true
         }, data => {
+          console.log('data = ', data);
           list[i].top = tabHeight;
           tabHeight = tabHeight + data.height;
           list[i].bottom = tabHeight;
