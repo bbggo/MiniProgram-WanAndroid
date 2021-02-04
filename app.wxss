@@ -12,7 +12,7 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
 
 .nav-list {
   display: flex;

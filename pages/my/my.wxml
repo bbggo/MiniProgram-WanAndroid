@@ -2,23 +2,7 @@
 <view class="UCenter-bg">
 
   <view class="userinfo">
-
-
-    <block wx:if="{{!hasUserInfo && canIUse}}">
-      <view>
-        <button class="png bg" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <image src="../../images/head.jpg" class="png bg" style="border-radius: 50%;margin-bottom: 10rpx;" mode="widthFix" bindtap='login'></image>
-      </view>
-      
-    </block>
-    
-
-
-
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+    <image src="../../images/head.jpg" class="png bg" style="border-radius: 50%;margin-bottom: 10rpx;" mode="widthFix" bindtap='login'></image>
   </view>
   <view class="text-xl">{{username}}
     <text class="text-df text-red" wx:if="{{myRank}}">Lv{{myRank.level}}</text>

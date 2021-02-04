@@ -8,7 +8,8 @@
     "pages/hot/hot",
     "pages/search/search",
     "pages/systemlist/systemlist",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -64,6 +65,7 @@
     "cu-custom": "/colorui/components/cu-custom",
     "mp-loading": "weui-miniprogram/loading/loading",
     "mp-searchbar": "weui-miniprogram/searchbar/searchbar",
-    "mp-tabs": "@miniprogram-component-plus/tabs"
+    "mp-tabs": "@miniprogram-component-plus/tabs",
+    "van-field": "miniprogram_npm/@vant/weapp/field/index"
   }
 }
