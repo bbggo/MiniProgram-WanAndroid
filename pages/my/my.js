@@ -10,6 +10,7 @@ Page({
   data: {
     userInfo: {},
     hasUserInfo: false,
+    username: '',
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
@@ -17,39 +18,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
-      console.log('userInfo = ', app.globalData.userInfo);
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      console.log('canIUse = ');
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        console.log(res);
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
+    console.log('option = ', options, options.username);
+    var name = '';
+    if (!options.username) {
+      var username = wx.getStorageSync('username');
+      if (username) {
+        name = username;
+      } else {
+        name = '请登录';
       }
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      console.log('getUserInfo = ');
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+      name = options.username;
     }
+    this.setData({
+      username: name,
+    })
   },
 
   login: function() {
+    console.log('login username = ', this.data.username);
+    if (this.data.username) {
+      wx.showToast({
+        title: '已登录',
+        icon: 'none',
+      })
+      return;
+    }
     wx.navigateTo({
       url: '../login/login'
     });

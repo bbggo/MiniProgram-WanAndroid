@@ -5,10 +5,10 @@
 </cu-custom>
 
 <van-cell-group>
-  <van-field value="{{ username }}" required clearable label="用户名" placeholder="请输入用户名" bind:change="loginusername" />
+  <van-field value="{{ username }}" required clearable label="用户名" placeholder="请输入用户名" bind:change="loginusername" v-model="text"/>
 
   <van-field value="{{ password }}" type="password" clearable label="密码" placeholder="请输入密码" required
-    bind:change="loginpassword" />
+    bind:change="loginpassword" v-model="password"/>
 </van-cell-group>
 
 <view class='loginbtn' bindtap='clicklogin'>登录</view>

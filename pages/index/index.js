@@ -55,11 +55,16 @@ Page({
       title: '加载中...',
     })
     wx.showNavigationBarLoading();
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
     wx.request({
       url: app.globalData.baseUrl + '/article/list/' + that.data.pageNumber + '/json',
       method: 'GET',
       header: {
-        'content-type': 'application/json' // 默认值
+        'content-type': 'application/json', // 默认值
+        'Cookie': userSession
       },
       success(res) {
         console.log(res.data)
@@ -84,4 +89,94 @@ Page({
       isCard: e.detail.value
     })
   },
+
+  collect: function(event) {
+    const isLogin = wx.getStorageSync('username');
+    console.log('isLogin = ', isLogin);
+    if (!isLogin) {
+      wx.showToast({
+        title: '您还未登录，请先登录',
+        icon: 'none'
+      });
+      wx.navigateTo({
+        url: '../login/login',
+      })
+      return;
+    }
+    const postion = event.currentTarget.id
+    const page = this.data.pageList[postion];
+    if (page.collect) {
+      this.unCollect(postion, page.id);
+    } else {
+      this.collectPage(postion, page.id);
+    }
+  },
+
+  unCollect: function(postion, id) {
+    wx.request({
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      url: app.globalData.baseUrl + '/lg/uncollect_originId' + '/' + id + '/json',
+      success(res) {
+        wx.showToast({
+          title: '取消收藏成功',
+          icon: 'none'
+        })
+        that.data.pageList[postion].collect = false;
+        that.setData({
+          pageList: that.data.pageList
+        })
+        console.log('uncollect page success', res);
+      },
+      fail(res) {
+        console.log('uncollect page fail', res);
+        wx.showToast({
+          title: '取消收藏失败，请重试',
+          icon: 'none'
+        })
+      }
+    })
+  },
+
+  collectPage: function(postion, pageId) {
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
+    wx.request({
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': userSession
+      },
+      url: app.globalData.baseUrl + '/lg/collect/' + pageId + '/json',
+      success(res) {
+        if (res.data.errorCode && res.data.errorCode === -1001) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+          })
+          return;
+        }
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'none'
+        })
+        that.data.pageList[postion].collect = true;
+        that.setData({
+          pageList: that.data.pageList
+        })
+        console.log('collect page success', res);
+      },
+      fail(res) {
+        console.log('collect page fail', res);
+        wx.showToast({
+          title: '收藏失败，请重试',
+          icon: 'none'
+        })
+      }
+    })
+  }
 })

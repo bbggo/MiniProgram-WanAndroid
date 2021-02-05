@@ -22,10 +22,10 @@
   </view>
 
   <view class="cu-item arrow" bindtap='itemClick' data-type="2">
-    <view class="content">
+    <navigator class="content" url="/pages/mycollect/mycollect" hover-class="none">
       <text class="cuIcon-favor text-red"></text>
       <text class="text-grey">我的收藏</text>
-    </view>
+    </navigator>
   </view>
 
   <view class="cu-item arrow">

@@ -9,7 +9,8 @@
     "pages/search/search",
     "pages/systemlist/systemlist",
     "pages/my/my",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/mycollect/mycollect"
   ],
   "window": {
     "backgroundTextStyle": "light",

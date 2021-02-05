@@ -1,0 +1,23 @@
+<!--pages/wechat/wxarticlelist/wxarticlelist.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">我的收藏</view>
+</cu-custom>
+
+<view wx:for="{{articleList}}">
+<view class="card" bindtap='detail' data-index='{{index}}'>
+  <view class="portraitTime">
+    <image class="portrait" src="../../images/head.jpg"></image>
+    <text class="time">{{item.niceDate}}</text>
+  </view>
+  <view class='title'>{{item.title}}</view>
+  <view class='portraitTime'>
+    <view class='chapterName' id='{{item.chapterId}}' catchtap='chapter'>{{item.chapterName}}</view>
+    <image wx:if="{{item.collect}}" class='collect' src='/images/img_collect_ed.png' id='{{index}}'
+      catchtap='collect'></image>
+    <image wx:else class='collect' src='/images/img_collect.png' id='{{index}}' catchtap='collect'></image>
+  </view>
+</view>
+</view>
+
+<mp-loading type="circle" show="{{isLoad}}"></mp-loading>
