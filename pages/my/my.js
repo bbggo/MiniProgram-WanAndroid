@@ -24,8 +24,6 @@ Page({
       var username = wx.getStorageSync('username');
       if (username) {
         name = username;
-      } else {
-        name = '请登录';
       }
     } else {
       name = options.username;
@@ -58,6 +56,69 @@ Page({
           duration: 1000
         })
       }
+    })
+  },
+
+  loginout: function() {
+    that = this;
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
+    wx.request({
+      method: "GET",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': userSession,
+      },
+      url: app.globalData.baseUrl + '/user/logout/json',
+      success(res) {
+        that.setData({
+          username: ''
+        })
+        wx.setStorage({
+          key: "username",
+          data: ''
+        })
+        wx.setStorage({
+          key: "password",
+          data: ''
+        })
+        wx.setStorage({
+          key: "userid",
+          data: ''
+        })
+        wx.setStorage({
+          key: "loginUserName",
+          data: ''
+        })
+        wx.setStorage({
+          key: "loginUserPassword",
+          data: ''
+        })
+        wx.setStorage({
+          key: "jsessionId",
+          data: ''
+        })
+        wx.showToast({
+          title: '退出成功',
+          icon: 'none'
+        })
+        console.log('logout success', res);
+      },
+      fail(res) {
+        console.log('logout fail', res);
+      }
+    })
+  },
+
+  /**
+   * 赞赏支持
+   */
+  showQrcode() {
+    wx.previewImage({
+      urls: ['https://real-love-server.oss-cn-shenzhen.aliyuncs.com/tan_love/img/WechatIMG51.jpeg'],
+      current: 'https://real-love-server.oss-cn-shenzhen.aliyuncs.com/tan_love/img/WechatIMG51.jpeg' // 当前显示图片的http链接      
     })
   },
 

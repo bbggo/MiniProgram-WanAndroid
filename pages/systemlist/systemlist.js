@@ -49,6 +49,10 @@ Page({
     wx.showLoading({
       title: '加载中...',
     })
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
     console.log("request params = ", that.data.tabs[that.data.activeTab].title, that.data.pageNo, that.data.id);
     wx.request({
       url: app.globalData.baseUrl + '/article/list/' + that.data.pageNo + '/json',
@@ -57,7 +61,8 @@ Page({
         cid: that.data.tabs[that.data.activeTab].id
       },
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': userSession
       },
       success(res) {
         wx.hideLoading()
@@ -108,6 +113,49 @@ Page({
 
   onChange: function (event) {
     console.log("onChange");
+  },
+
+  collect: function(event) {
+    const postion = event.currentTarget.id
+    const page = this.data.pageList[postion];
+
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
+    wx.request({
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': userSession
+      },
+      url: app.globalData.baseUrl + '/lg/collect/' + page.id + '/json',
+      success(res) {
+        if (res.data.errorCode && res.data.errorCode === -1001) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+          })
+          return;
+        }
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'none'
+        })
+        that.data.pageList[postion].collect = true;
+        that.setData({
+          pageList: that.data.pageList
+        })
+        console.log('collect page success', res);
+      },
+      fail(res) {
+        console.log('collect page fail', res);
+        wx.showToast({
+          title: '收藏失败，请重试',
+          icon: 'none'
+        })
+      }
+    })
   },
 
   /**

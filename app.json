@@ -32,33 +32,43 @@
     "list": [
       {
         "pagePath": "pages/index/index",
+        "color": "#999999",
+        "selectedColor": "#f5f5f5",
         "text": "首页",
         "iconPath": "images/img_index.png",
         "selectedIconPath": "images/img_index_click.png"
       },
       {
         "pagePath": "pages/wechat/wechat",
+        "color": "#999999",
+        "selectedColor": "#f5f5f5",
         "text": "公众号",
         "iconPath": "images/img_wxarticle.png",
         "selectedIconPath": "images/img_wxarticle_click.png"
       },
       {
         "pagePath": "pages/system/system",
+        "color": "#999999",
+        "selectedColor": "#f5f5f5",
         "text": "知识体系",
         "iconPath": "images/img_tixi.png",
         "selectedIconPath": "images/img_tixi_click.png"
       },
       {
         "pagePath": "pages/hot/hot",
+        "color": "#999999",
+        "selectedColor": "#f5f5f5",
         "text": "热搜",
         "iconPath": "images/img_hot.png",
         "selectedIconPath": "images/img_hot_click.png"
       },
       {
         "pagePath": "pages/my/my",
+        "color": "#999999",
+        "selectedColor": "#f5f5f5",
         "text": "我的",
-        "iconPath": "images/img_hot.png",
-        "selectedIconPath": "images/img_hot_click.png"
+        "iconPath": "images/img_my.png",
+        "selectedIconPath": "images/img_my_click.png"
       }
     ]
   },

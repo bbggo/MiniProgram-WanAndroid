@@ -51,8 +51,18 @@ Page({
 
     console.log('url = ', url);
 
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
+
     wx.request({
       url: url,
+      method: 'GET',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Cookie': userSession
+      },
       success(res) {
         console.log('success = ', res.data.data)
         var list = res.data.data.datas
@@ -117,6 +127,49 @@ Page({
     that.data.pageNo = 1
     that.data.isClearKeyword = true
     this.getWxArticleList();
+  },
+
+  collect: function(event) {
+    const postion = event.currentTarget.id
+    const page = this.data.articleList[postion];
+
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
+    wx.request({
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': userSession
+      },
+      url: app.globalData.baseUrl + '/lg/collect/' + page.id + '/json',
+      success(res) {
+        if (res.data.errorCode && res.data.errorCode === -1001) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+          })
+          return;
+        }
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'none'
+        })
+        that.data.articleList[postion].collect = true;
+        that.setData({
+          articleList: that.data.articleList
+        })
+        console.log('collect page success', res);
+      },
+      fail(res) {
+        console.log('collect page fail', res);
+        wx.showToast({
+          title: '收藏失败，请重试',
+          icon: 'none'
+        })
+      }
+    })
   },
 
   /**

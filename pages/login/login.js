@@ -67,6 +67,13 @@ Page({
       success(res) {
         wx.hideLoading();
         console.log('login success = ', res, that.data.username);
+        if (res.data.errorCode === -1) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none'
+          })
+          return;
+        }
         let tempPage = getCurrentPages(); // 当前页变量
         let prevPage = tempPage[tempPage.length - 2]; // 上一页变量
         // 这里给要打开的页面传递数据.

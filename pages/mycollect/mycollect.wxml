@@ -13,9 +13,7 @@
   <view class='title'>{{item.title}}</view>
   <view class='portraitTime'>
     <view class='chapterName' id='{{item.chapterId}}' catchtap='chapter'>{{item.chapterName}}</view>
-    <image wx:if="{{item.collect}}" class='collect' src='/images/img_collect_ed.png' id='{{index}}'
-      catchtap='collect'></image>
-    <image wx:else class='collect' src='/images/img_collect.png' id='{{index}}' catchtap='collect'></image>
+    <image class='collect' src='/images/img_collect_ed.png' id='{{index}}' catchtap='uncollect'></image>
   </view>
 </view>
 </view>

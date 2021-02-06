@@ -14,12 +14,12 @@
 </view>
 
 <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-  <view class="cu-item arrow">
+  <!-- <view class="cu-item arrow">
     <view class="content" bindtap="CopyLink" data-link="https://github.com/bbggo/WanAndroidGank">
       <text class="cuIcon-github text-grey"></text>
       <text class="text-grey">GitHub</text>
     </view>
-  </view>
+  </view> -->
 
   <view class="cu-item arrow" bindtap='itemClick' data-type="2">
     <navigator class="content" url="/pages/mycollect/mycollect" hover-class="none">
@@ -35,11 +35,18 @@
     </view>
   </view>
 
-  <view class="cu-item arrow">
+  <!-- <view class="cu-item arrow">
     <navigator class="content" url="/pages/about/about" hover-class="none">
       <text class="cuIcon-emoji text-orange"></text>
       <text class="text-grey">关于我们</text>
     </navigator>
+  </view> -->
+
+  <view class="cu-item arrow" bindtap='loginout' wx:if="{{username != ''}}">
+    <view class="content">
+      <text class="cuIcon-forward text-red"></text>
+      <text class="text-grey">退出登陆</text>
+    </view>
   </view>
 
 </view>

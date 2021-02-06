@@ -63,6 +63,51 @@ Page({
     })
   },
 
+  uncollect: function(event) {
+    const postion = event.currentTarget.id
+    const artical = this.data.articleList[postion];
+    wx.showLoading({
+      title: '加载中...',
+    })
+    var loginUserName = wx.getStorageSync('loginUserName');
+    var loginUserPassword = wx.getStorageSync('loginUserPassword');
+    var jsessionId = wx.getStorageSync('jsessionId');
+    const userSession = loginUserName + ";" + jsessionId + ";" + loginUserPassword;
+    var originId = -1;
+    if (artical.originId) {
+      originId = artical.originId;
+    }
+    wx.request({
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': userSession,
+      },
+      url: app.globalData.baseUrl + '/lg/uncollect' + '/' + artical.id + '/json',
+      data: {
+        'originId': originId,
+      },
+      success(res) {
+        wx.showToast({
+          title: '取消收藏成功',
+          icon: 'none'
+        })
+        console.log('uncollect page success', res);
+        that.data.articleList.splice(postion, 1);
+        that.setData({
+          articleList: that.data.articleList
+        });
+      },
+      fail(res) {
+        console.log('uncollect page fail', res);
+        wx.showToast({
+          title: '取消收藏失败，请重试',
+          icon: 'none'
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
