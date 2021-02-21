@@ -1,6 +1,6 @@
 <!--index.wxml-->
-<cu-custom bgImage="https://www.mtjsoft.cn/media/wanandroid/indextopbg.jpg">
-  <view slot="content">首页</view>
+<cu-custom bgColor="bg-gradual-blue">
+<view slot="content">首页</view>
 </cu-custom>
 
 <swiper class="card-swiper" indicator-dots="true" indicator-color='#1B82D1' indicator-active-color='#f00'

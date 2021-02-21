@@ -14,6 +14,30 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
 
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: 'Android极客才看的东西',
+      path: '/page/my/my',
+      imageUrl: 'https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7112a809f22147bd97b31d7f783ea4d5~tplv-k3u1fbpfcp-watermark.image',
+    }
+  },
+
+  onShareTimeline: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: 'Android极客才看的东西',
+      path: '/page/my/my',
+      imageUrl: 'https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7112a809f22147bd97b31d7f783ea4d5~tplv-k3u1fbpfcp-watermark.image',
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
