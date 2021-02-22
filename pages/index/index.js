@@ -203,5 +203,18 @@ Page({
         })
       }
     })
-  }
+  },
+
+  CopyLink(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.link,
+      success(res) {
+        wx.showToast({
+          icon: 'none',
+          title: '已复制，请在手机浏览器中打开',
+          duration: 2000
+        })
+      }
+    })
+  },
 })

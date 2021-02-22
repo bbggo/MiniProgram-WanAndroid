@@ -182,6 +182,19 @@ Page({
     })
   },
 
+  CopyLink(e) {
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.link,
+      success(res) {
+        wx.showToast({
+          icon: 'none',
+          title: '已复制，请在手机浏览器中打开',
+          duration: 2000
+        })
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

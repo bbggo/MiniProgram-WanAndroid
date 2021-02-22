@@ -48,6 +48,8 @@ Page({
       var username = wx.getStorageSync('username');
       if (username) {
         name = username;
+      } else {
+        name = '请登录';
       }
     } else {
       name = options.username;
@@ -58,8 +60,8 @@ Page({
   },
 
   login: function() {
-    console.log('login username = ', this.data.username);
-    if (this.data.username) {
+    var username = wx.getStorageSync('username');
+    if (username) {
       wx.showToast({
         title: '已登录',
         icon: 'none',
@@ -83,6 +85,23 @@ Page({
     })
   },
 
+  itemClick: function() {
+    var username = wx.getStorageSync('username');
+    if (!username) {
+      wx.showToast({
+        title: '请先登录',
+        icon: 'none',
+      })
+      wx.navigateTo({
+        url: '../login/login'
+      });
+      return;
+    }
+    wx.navigateTo({
+      url: '../mycollect/mycollect'
+    });
+  },
+
   loginout: function() {
     that = this;
     var loginUserName = wx.getStorageSync('loginUserName');
@@ -98,7 +117,7 @@ Page({
       url: app.globalData.baseUrl + '/user/logout/json',
       success(res) {
         that.setData({
-          username: ''
+          username: '请登录'
         })
         wx.setStorage({
           key: "username",

@@ -22,10 +22,10 @@
   </view> -->
 
   <view class="cu-item arrow" bindtap='itemClick' data-type="2">
-    <navigator class="content" url="/pages/mycollect/mycollect" hover-class="none">
+    <view class="content">
       <text class="cuIcon-favor text-red"></text>
       <text class="text-grey">我的收藏</text>
-    </navigator>
+    </view>
   </view>
 
   <view class="cu-item arrow">
@@ -42,7 +42,7 @@
     </navigator>
   </view> -->
 
-  <view class="cu-item arrow" bindtap='loginout' wx:if="{{username != ''}}">
+  <view class="cu-item arrow" bindtap='loginout' wx:if="{{username != '请登录'}}">
     <view class="content">
       <text class="cuIcon-forward text-red"></text>
       <text class="text-grey">退出登陆</text>

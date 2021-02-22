@@ -153,6 +153,12 @@ Page({
       success(res) {
         wx.hideLoading();
         console.log('register success = ', res);
+        if (res.data.errorCode === -1) {
+          wx.showToast({
+            title: res.data.errorMsg,
+          })
+          return;
+        }
         that.clicklogin();
       },
       fail(res) {

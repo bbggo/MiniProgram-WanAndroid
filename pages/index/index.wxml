@@ -7,14 +7,14 @@
   autoplay='true' circular='true' interval='3000' duration='500' bindchange="cardSwiper">
 
   <swiper-item wx:for="{{bannerList}}" wx:key class="{{cardCur==index?'cur':''}}">
-    <image class='swiper-item shadow imageBener' mode="aspectFill" src="{{item.imagePath}}"></image>
+    <image class='swiper-item shadow imageBener' mode="aspectFill" src="{{item.imagePath}}" bindtap='CopyLink' data-link="{{item.url}}"></image>
   </swiper-item>
 
 </swiper>
 
 <view wx:for="{{pageList}}">
 
-  <view class="card" bindtap='detail' data-index='{{index}}'>
+  <view class="card" bindtap='CopyLink' data-index='{{index}}' data-link='{{item.link}}'>
     <view class="portraitTime">
       <image class="portrait" src="../../images/head.jpg"></image>
       <text class="time">{{item.niceDate}}</text>

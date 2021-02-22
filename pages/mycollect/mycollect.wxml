@@ -5,7 +5,7 @@
 </cu-custom>
 
 <view wx:for="{{articleList}}">
-<view class="card" bindtap='detail' data-index='{{index}}'>
+<view class="card" bindtap='CopyLink' data-index='{{index}}' data-link='{{item.link}}'>
   <view class="portraitTime">
     <image class="portrait" src="../../images/head.jpg"></image>
     <text class="time">{{item.niceDate}}</text>
