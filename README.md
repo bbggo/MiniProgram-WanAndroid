@@ -2,7 +2,7 @@
 
 #项目截图
 
-![Image text size](screenshot/page_1.png=280x480)
+![Image text size](screenshot/page_1.png){:height="100px" width="400px"}
 
 
 
